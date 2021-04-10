@@ -1,0 +1,39 @@
+# Publish
+
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get version name
+        id: get_version
+        uses: battila7/get-version-action@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker login GHCR
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+      - name: Docker login Docker Hub
+        uses: docker/login-action@v1
+        with:
+          registry: docker.io
+          username: chillibits
+          password: ${{ secrets.DOCKER_HUB_SECRET }}
+      - name: Docker build and push
+        run: |
+          docker build . --file Dockerfile -t ghcr.io/compose-generator/compose-generator-toolbox:latest -t ghcr.io/compose-generator/compose-generator-toolbox:${{ steps.get_version.outputs.version }} -t chillibits/compose-generator-toolbox:latest  -t chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }}
+          echo "Build completed"
+          docker push ghcr.io/compose-generator/compose-generator-toolbox:latest
+          docker push ghcr.io/compose-generator/compose-generator-toolbox:${{ steps.get_version.outputs.version }}
+          docker push chillibits/compose-generator-toolbox:latest
+          docker push chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }}
+          echo "Push completed"

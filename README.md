@@ -4,4 +4,22 @@
 
 *Note: This library is part of the **Compose Generator** project, but also can be used independently.*
 
+## Usage
+To execute a Linux command on execute following Docker command:
+```sh
+
+```
+Please note, that this Docker image is based on Linux Alpine and only supports a limited number of commands. So check if your command is supported in the list below.
+
+## Included Linux commands
+- bash
+- curl
+- npm
+- yarn
+- unzip
+- python / python3
+- pip
+- ng
+- vue
+
 © Marc Auberer 2021
