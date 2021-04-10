@@ -6,9 +6,17 @@
 
 ## Usage
 To execute a Linux command on execute following Docker command:
-```sh
 
+```sh
+docker run --rm -it -v ${pwd}:/toolbox chillibits/compose-generator-toolbox /bin/bash <command>
 ```
+
+or
+
+```sh
+docker run --rm -it -v ${pwd}:/toolbox ghcr.io/compose-generator/compose-generator-toolbox /bin/bash <command>
+```
+
 Please note, that this Docker image is based on Linux Alpine and only supports a limited number of commands. So check if your command is supported in the list below.
 
 ## Included Linux commands
