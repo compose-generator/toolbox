@@ -1,0 +1,19 @@
+# Dockerfile Validation
+
+name: Dockerfile Validation
+
+on:
+  push:
+    paths:
+      - 'Dockerfile'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Pull Hadolint
+      run: docker pull hadolint/hadolint
+    - name: Lint Dockerfile
+      run: docker run --rm --interactive hadolint/hadolint < Dockerfile

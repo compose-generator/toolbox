@@ -5,6 +5,8 @@ name: Publish Dev
 on:
   push:
     branches: [ main, dev ]
+    paths:
+      - 'Dockerfile'
 
 jobs:
   release:
