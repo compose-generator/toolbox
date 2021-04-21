@@ -25,6 +25,7 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 - cargo
 - curl
 - git
+- go
 - ng
 - npm
 - pip
