@@ -22,15 +22,17 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 
 ## Included Linux commands
 - bash
-- sh
+- cargo
 - curl
 - git
-- npm
-- yarn
-- unzip
-- python / python3
-- pip
 - ng
+- npm
+- pip
+- python / python3
+- rustup
+- sh
+- unzip
 - vue
+- yarn
 
 © Marc Auberer 2021
