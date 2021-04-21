@@ -22,7 +22,9 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 
 ## Included Linux commands
 - bash
+- sh
 - curl
+- git
 - npm
 - yarn
 - unzip
