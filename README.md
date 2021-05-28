@@ -30,6 +30,8 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 - npm
 - pip
 - python / python3
+- rails
+- ruby
 - rustup
 - sh
 - unzip
