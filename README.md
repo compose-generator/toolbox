@@ -26,6 +26,7 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 - curl
 - git
 - go
+- make
 - ng
 - npm
 - pip
