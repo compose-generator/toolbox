@@ -8,7 +8,7 @@ RUN apk update && apk add --no-cache sudo=1.9.5p2-r0 bash=5.1.0-r0 curl=7.77.0-r
 RUN yarn global add @angular/cli @vue/cli && yarn cache clean --all
 
 # Install pip dependencies
-RUN pip3 install --no-cache-dir flask-now==0.2.2
+RUN pip3 install --no-cache-dir flask-now==0.2.2 django==3.2.3
 
 # Install gem packages
 RUN gem install rails:6.1.3.2 && gem cleanup

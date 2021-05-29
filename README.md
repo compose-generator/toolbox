@@ -24,6 +24,7 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 - bash
 - cargo
 - curl
+- django-admin
 - git
 - go
 - make
