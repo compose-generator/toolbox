@@ -14,18 +14,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Docker login GHCR
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
+
       - name: Docker login Docker Hub
         uses: docker/login-action@v1
         with:
           registry: docker.io
           username: chillibits
           password: ${{ secrets.DOCKER_HUB_SECRET }}
+          
       - name: Docker build and push
         run: |
           docker build . --file Dockerfile -t ghcr.io/compose-generator/compose-generator-toolbox:dev -t chillibits/compose-generator-toolbox:dev
