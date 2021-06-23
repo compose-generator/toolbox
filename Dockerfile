@@ -16,8 +16,10 @@ RUN pip3 install --no-cache-dir flask-now==0.2.2 django==3.2.3
 RUN gem install rails:6.1.3.2 && gem cleanup
 
 # Install golang
-RUN apk add --no-cache --virtual .build-deps gcc=10.2.1_pre1-r3 musl-dev=1.2.2-r0 go=1.15.12-r0 openssl=1.1.1k-r0 && rm -rf /var/cache/apk/*
-RUN curl -sSL -o go.tar.gz https://golang.org/dl/go1.16.4.src.tar.gz && tar -C /usr/local -xzf go.tar.gz && rm go.tar.gz
+RUN apk add --no-cache --virtual .build-deps gcc=10.2.1_pre1-r3 musl-dev=1.2.2-r0 go=1.15.12-r0 openssl=1.1.1k-r0 \
+    && rm -rf /var/cache/apk/* \
+    && curl -sSL -o go.tar.gz https://golang.org/dl/go1.16.4.src.tar.gz \
+    && tar -C /usr/local -xzf go.tar.gz && rm go.tar.gz
 WORKDIR /usr/local/go/src/
 RUN ./make.bash && apk del .build-deps
 ENV PATH="/usr/local/go/bin:$PATH"
