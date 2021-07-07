@@ -1,5 +1,4 @@
 # Dockerfile Validation
-
 name: Dockerfile Validation
 
 on:
