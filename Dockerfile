@@ -7,7 +7,7 @@ RUN apk update && apk add --no-cache sudo=1.9.7_p1-r1 bash=5.1.4-r0 curl=7.78.0-
     && rm -rf /var/cache/apk/*
 
 # Install required npm packages
-RUN yarn global add @angular/cli @vue/cli && yarn cache clean --all
+RUN yarn global add @angular/cli @vue/cli create-react-app && yarn cache clean --all
 
 # Install pip dependencies
 RUN pip3 install --no-cache-dir flask-now==0.2.2 django==3.2.7
@@ -25,9 +25,6 @@ RUN ./make.bash && apk del .build-deps
 ENV PATH="/usr/local/go/bin:$PATH"
 ENV GOPATH=/opt/go/
 ENV PATH=$PATH:$GOPATH/bin
-
-# Make npx working
-RUN chown -R root ~/.npm
 
 # Install dotnet
 RUN curl -sSL -o dotnet-install.sh https://dot.net/v1/dotnet-install.sh && chmod +x dotnet-install.sh && bash dotnet-install.sh && rm dotnet-install.sh
