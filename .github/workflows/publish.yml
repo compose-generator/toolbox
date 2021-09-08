@@ -1,5 +1,4 @@
 # Publish
-
 name: Publish
 
 on:
@@ -38,7 +37,5 @@ jobs:
           username: chillibits
           password: ${{ secrets.DOCKER_HUB_SECRET }}
 
-      - name: Build Docker image and push to registries # ToDo: ,linux/arm/v5,linux/arm/v6,linux/arm/v7,linux/arm64/v8
-        run: docker buildx build --push --platform linux/amd64,linux/i386 -t ghcr.io/compose-generator/compose-generator-toolbox:latest \
-          -t ghcr.io/compose-generator/compose-generator-toolbox:${{ steps.get_version.outputs.version }} \
-          -t chillibits/compose-generator-toolbox:latest -t chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }} .
+      - name: Build Docker image and push to registries # ToDo: ,linux/i386,linux/arm/v5,linux/arm/v6,linux/arm/v7,linux/arm64/v8
+        run: docker buildx build --push --platform linux/amd64 -t ghcr.io/compose-generator/compose-generator-toolbox:latest -t ghcr.io/compose-generator/compose-generator-toolbox:${{ steps.get_version.outputs.version }} -t chillibits/compose-generator-toolbox:latest -t chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }} .
