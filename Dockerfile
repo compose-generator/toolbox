@@ -26,6 +26,9 @@ ENV PATH="/usr/local/go/bin:$PATH"
 ENV GOPATH=/opt/go/
 ENV PATH=$PATH:$GOPATH/bin
 
+# Make npx working
+RUN chown -R root ~/.npm
+
 # Install dotnet
 RUN curl -sSL -o dotnet-install.sh https://dot.net/v1/dotnet-install.sh && chmod +x dotnet-install.sh && bash dotnet-install.sh && rm dotnet-install.sh
 ENV PATH "/root/.dotnet:${PATH}"
