@@ -29,6 +29,7 @@ ENV PATH=$PATH:$GOPATH/bin
 # Install dotnet
 RUN curl -sSL -o dotnet-install.sh https://dot.net/v1/dotnet-install.sh && chmod +x dotnet-install.sh && bash dotnet-install.sh && rm dotnet-install.sh
 ENV PATH "/root/.dotnet:${PATH}"
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 WORKDIR /toolbox
 ENTRYPOINT [ "/bin/bash", "-c"]
