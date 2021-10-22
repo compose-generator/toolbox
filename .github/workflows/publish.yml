@@ -99,7 +99,7 @@ jobs:
             chillibits/compose-generator-toolbox:i386-${{ steps.get_version.outputs.version }} \
             chillibits/compose-generator-toolbox:armv6-${{ steps.get_version.outputs.version }} \
             chillibits/compose-generator-toolbox:armv7-${{ steps.get_version.outputs.version }} \
-            chillibits/compose-generator-toolbox:arm64-${{ steps.get_version.outputs.version }} \
+            chillibits/compose-generator-toolbox:arm64-${{ steps.get_version.outputs.version }}
           docker manifest push chillibits/compose-generator-toolbox:latest
 
           docker manifest create chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }} \
@@ -107,23 +107,5 @@ jobs:
             chillibits/compose-generator-toolbox:i386-${{ steps.get_version.outputs.version }} \
             chillibits/compose-generator-toolbox:armv6-${{ steps.get_version.outputs.version }} \
             chillibits/compose-generator-toolbox:armv7-${{ steps.get_version.outputs.version }} \
-            chillibits/compose-generator-toolbox:arm64-${{ steps.get_version.outputs.version }} \
+            chillibits/compose-generator-toolbox:arm64-${{ steps.get_version.outputs.version }}
           docker manifest push chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }}
-
-      - name: Build manifest DHCR
-        run: |
-          docker manifest create ghcr.io/chillibits/compose-generator-toolbox:latest \
-            ghcr.io/chillibits/compose-generator-toolbox:amd64-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:i386-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:armv6-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:armv7-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:arm64-${{ steps.get_version.outputs.version }} \
-          docker manifest push ghcr.io/chillibits/compose-generator-toolbox:latest
-
-          docker manifest create ghcr.io/chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:amd64-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:i386-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:armv6-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:armv7-${{ steps.get_version.outputs.version }} \
-            ghcr.io/chillibits/compose-generator-toolbox:arm64-${{ steps.get_version.outputs.version }} \
-          docker manifest push ghcr.io/chillibits/compose-generator-toolbox:${{ steps.get_version.outputs.version }}
