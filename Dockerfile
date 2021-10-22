@@ -7,6 +7,7 @@ RUN apk update && apk add --no-cache sudo=1.9.7_p1-r1 bash=5.1.4-r0 curl=7.79.1-
     && rm -rf /var/cache/apk/*
 
 # Install required npm packages
+RUN yarn config set network-timeout 600000 -g
 RUN yarn global add @angular/cli @vue/cli create-react-app express-generator && yarn cache clean --all
 
 # Install pip dependencies
