@@ -4,12 +4,12 @@ name: Publish Dev
 on:
   push:
     branches: [ main, dev ]
-#    paths:
-#      - './amd64/Dockerfile'
-#      - './i386/Dockerfile'
-#      - './armv6/Dockerfile'
-#      - './armv7/Dockerfile'
-#      - './arm64/Dockerfile'
+    paths:
+      - './amd64/Dockerfile'
+      - './i386/Dockerfile'
+      - './armv6/Dockerfile'
+      - './armv7/Dockerfile'
+      - './arm64/Dockerfile'
 
 jobs:
   build:
