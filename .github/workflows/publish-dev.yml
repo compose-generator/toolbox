@@ -98,13 +98,3 @@ jobs:
             chillibits/compose-generator-toolbox:armv7-dev \
             chillibits/compose-generator-toolbox:arm64-dev
           docker manifest push chillibits/compose-generator-toolbox:dev
-
-      - name: Build manifest DHCR
-        run: |
-          docker manifest create ghcr.io/chillibits/compose-generator-toolbox:dev \
-            ghcr.io/chillibits/compose-generator-toolbox:amd64-dev \
-            ghcr.io/chillibits/compose-generator-toolbox:i386-dev \
-            ghcr.io/chillibits/compose-generator-toolbox:armv6-dev \
-            ghcr.io/chillibits/compose-generator-toolbox:armv7-dev \
-            ghcr.io/chillibits/compose-generator-toolbox:arm64-dev
-          docker manifest push ghcr.io/chillibits/compose-generator-toolbox:dev
