@@ -1,7 +1,59 @@
 version: 2
 updates:
   - package-ecosystem: docker
-    directory: /
+    directory: /amd64
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 15
+    target-branch: dev
+    reviewers:
+      - marcauberer
+    assignees:
+      - marcauberer
+
+  - package-ecosystem: docker
+    directory: /i386
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 15
+    target-branch: dev
+    reviewers:
+      - marcauberer
+    assignees:
+      - marcauberer
+
+  - package-ecosystem: docker
+    directory: /armv6
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 15
+    target-branch: dev
+    reviewers:
+      - marcauberer
+    assignees:
+      - marcauberer
+
+  - package-ecosystem: docker
+    directory: /armv7
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 15
+    target-branch: dev
+    reviewers:
+      - marcauberer
+    assignees:
+      - marcauberer
+
+  - package-ecosystem: docker
+    directory: /arm64
     schedule:
       interval: daily
       time: "04:00"
