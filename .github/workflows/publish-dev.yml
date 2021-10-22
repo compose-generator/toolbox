@@ -13,11 +13,26 @@ jobs:
     strategy:
       matrix:
         arch:
-          - linux/amd64
-          #- linux/i386
-          - linux/arm/v6
-          - linux/arm/v7
-          - linux/arm64/v8
+          - {
+              dir: amd64,
+              docker-arch: linux/amd64
+            }
+          - {
+              dir: i386,
+              docker-arch: linux/i386
+            }
+          - {
+              dir: armv6,
+              docker-arch: linux/arm/v6
+            }
+          - {
+              dir: armv7,
+              docker-arch: linux/arm/v67
+            }
+          - {
+              dir: arm64,
+              docker-arch: linux/arm64/v8
+            }
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -42,5 +57,6 @@ jobs:
           username: chillibits
           password: ${{ secrets.DOCKER_HUB_SECRET }}
           
-      - name: Build Docker image and push to registries # ToDo: linux/amd64,linux/i386,linux/arm/v6,linux/arm/v7,linux/arm64/v8
-        run: docker buildx build --push --platform ${{ matrix.arch }} -t ghcr.io/compose-generator/compose-generator-toolbox:dev -t chillibits/compose-generator-toolbox:dev .
+      - name: Build Docker image and push to registries
+        working-directory: ./${{ matrix.arch.dir }}
+        run: docker buildx build --push --platform ${{ matrix.arch.docker-arch }} -t ghcr.io/compose-generator/compose-generator-toolbox:dev -t chillibits/compose-generator-toolbox:dev .
