@@ -5,32 +5,36 @@ on:
   push:
     branches: [ main, dev ]
 #    paths:
-#      - 'Dockerfile'
+#      - './amd64/Dockerfile'
+#      - './i386/Dockerfile'
+#      - './armv6/Dockerfile'
+#      - './armv7/Dockerfile'
+#      - './arm64/Dockerfile'
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         arch:
           - {
-              dir: amd64,
+              name: amd64,
               docker-arch: linux/amd64
             }
           - {
-              dir: i386,
+              name: i386,
               docker-arch: linux/i386
             }
           - {
-              dir: armv6,
+              name: armv6,
               docker-arch: linux/arm/v6
             }
           - {
-              dir: armv7,
+              name: armv7,
               docker-arch: linux/arm/v7
             }
           - {
-              dir: arm64,
+              name: arm64,
               docker-arch: linux/arm64/v8
             }
     steps:
@@ -58,5 +62,49 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_SECRET }}
           
       - name: Build Docker image and push to registries
-        working-directory: ./${{ matrix.arch.dir }}
-        run: docker buildx build --push --platform ${{ matrix.arch.docker-arch }} -t ghcr.io/compose-generator/compose-generator-toolbox:dev -t chillibits/compose-generator-toolbox:dev .
+        working-directory: ./${{ matrix.arch.name }}
+        run: |
+          docker buildx build --push --platform ${{ matrix.arch.docker-arch }} \
+            -t ghcr.io/compose-generator/compose-generator-toolbox:${{ matrix.arch.name }}-dev \
+            -t chillibits/compose-generator-toolbox:${{ matrix.arch.name }}-dev .
+
+  manifest:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Docker login GHCR
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Docker login Docker Hub
+        uses: docker/login-action@v1
+        with:
+          registry: docker.io
+          username: chillibits
+          password: ${{ secrets.DOCKER_HUB_SECRET }}
+
+      - name: Build manifest Docker Hub
+        run: |
+          docker manifest create chillibits/compose-generator-toolbox:dev \
+            chillibits/compose-generator-toolbox:amd64-dev \
+            chillibits/compose-generator-toolbox:i386-dev \
+            chillibits/compose-generator-toolbox:armv6-dev \
+            chillibits/compose-generator-toolbox:armv7-dev \
+            chillibits/compose-generator-toolbox:arm64-dev \
+          docker manifest push chillibits/compose-generator-toolbox:dev
+
+      - name: Build manifest DHCR
+        run: |
+          docker manifest create ghcr.io/chillibits/compose-generator-toolbox:dev \
+            ghcr.io/chillibits/compose-generator-toolbox:amd64-dev \
+            ghcr.io/chillibits/compose-generator-toolbox:i386-dev \
+            ghcr.io/chillibits/compose-generator-toolbox:armv6-dev \
+            ghcr.io/chillibits/compose-generator-toolbox:armv7-dev \
+            ghcr.io/chillibits/compose-generator-toolbox:arm64-dev \
+          docker manifest push ghcr.io/chillibits/compose-generator-toolbox:dev
