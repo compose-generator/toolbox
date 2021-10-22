@@ -13,5 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Lint Dockerfile
-        run: docker run --rm -i hadolint/hadolint < Dockerfile
+      - name: Lint Dockerfile (amd64)
+        run: docker run --rm -i hadolint/hadolint < ./amd64/Dockerfile
+
+      - name: Lint Dockerfile (i386)
+        run: docker run --rm -i hadolint/hadolint < ./i386/Dockerfile
+
+      - name: Lint Dockerfile (armv6)
+        run: docker run --rm -i hadolint/hadolint < ./armv6/Dockerfile
+
+      - name: Lint Dockerfile (armv7)
+        run: docker run --rm -i hadolint/hadolint < ./armv7/Dockerfile
+
+      - name: Lint Dockerfile (arm64)
+        run: docker run --rm -i hadolint/hadolint < ./arm64/Dockerfile

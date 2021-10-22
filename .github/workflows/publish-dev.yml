@@ -27,7 +27,7 @@ jobs:
             }
           - {
               dir: armv7,
-              docker-arch: linux/arm/v67
+              docker-arch: linux/arm/v7
             }
           - {
               dir: arm64,
