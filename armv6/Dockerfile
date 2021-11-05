@@ -10,13 +10,13 @@ RUN apk update && apk add --no-cache sudo=1.9.7_p1-r1 bash=5.1.4-r0 curl=7.79.1-
 RUN yarn config set network-timeout 600000 -g && yarn global add @angular/cli @vue/cli create-react-app express-generator && yarn cache clean --all
 
 # Install pip dependencies
-RUN pip3 install --no-cache-dir flask-now==0.2.2 django==3.2.8
+RUN pip3 install --no-cache-dir flask-now==0.2.2 django==3.2.9
 
 # Install gem packages
 RUN gem install rails:6.1.4.1 && gem cleanup
 
 # Install golang
-RUN apk add --no-cache --virtual .build-deps gcc=10.3.1_git20210424-r2 musl-dev=1.2.2-r3 go=1.16.8-r0 openssl=1.1.1l-r0 \
+RUN apk add --no-cache --virtual .build-deps gcc=10.3.1_git20210424-r2 musl-dev=1.2.2-r3 go=1.16.10-r0 openssl=1.1.1l-r0 \
     && rm -rf /var/cache/apk/* \
     && curl -sSL -o go.tar.gz https://golang.org/dl/go1.17.2.src.tar.gz \
     && tar -C /usr/local -xzf go.tar.gz && rm go.tar.gz
