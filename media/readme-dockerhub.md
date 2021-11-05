@@ -23,11 +23,12 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 ## Included Linux commands
 - bash
 - cargo
+- create-react-app
 - curl
 - django-admin
-- dotnet
+- dotnet (not for armv6, armv7, arm64)
 - git
-- go
+- go (not for i386)
 - make
 - ng
 - npm
