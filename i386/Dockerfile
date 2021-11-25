@@ -1,4 +1,4 @@
-FROM alpine:3.14.2
+FROM alpine:3.15.0
 
 # Install alpine packages
 RUN apk update && apk add --no-cache sudo=1.9.7_p1-r1 bash=5.1.4-r0 curl=7.79.1-r0 git=2.32.0-r0 npm=7.17.0-r0 yarn=1.22.10-r0 \
