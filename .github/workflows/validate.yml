@@ -3,12 +3,12 @@ name: Dockerfile Validation
 
 on:
   push:
-#    paths:
-#      - './amd64/Dockerfile'
-#      - './i386/Dockerfile'
-#      - './armv6/Dockerfile'
-#      - './armv7/Dockerfile'
-#      - './arm64/Dockerfile'
+    paths:
+      - ./amd64/Dockerfile
+      - ./i386/Dockerfile
+      - ./armv6/Dockerfile
+      - ./armv7/Dockerfile
+      - ./arm64/Dockerfile
 
 jobs:
   build:
