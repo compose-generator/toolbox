@@ -42,4 +42,4 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 - vue
 - yarn
 
-© Marc Auberer 2021
+© Marc Auberer 2021-2022

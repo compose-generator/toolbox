@@ -1,3 +1,6 @@
+# Copyright © 2021-2022 Compose Generator Contributors
+# All rights reserved.
+
 FROM alpine:3.15.0
 
 # Install alpine packages
