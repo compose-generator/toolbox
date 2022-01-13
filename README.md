@@ -25,4 +25,4 @@ Please note, that this Docker image is based on Linux Alpine and only supports a
 `bash`, `cargo`, `create-react-app`, `curl`, `django-admin`, `dotnet` (not for armv6, armv7, arm64), `git`, `go` (not for i386), `make`, `ng`, `npm`,
 `pip`, `python`, `python3`, `rails`, `rustup`, `sh`, `unzip`, `vue`, `yarn`
 
-© Marc Auberer 2021
+© Marc Auberer 2021-2022
