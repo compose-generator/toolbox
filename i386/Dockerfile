@@ -13,10 +13,10 @@ RUN apk update && apk add --no-cache sudo=1.9.8_p2-r1 bash=5.1.8-r0 curl=7.80.0-
 RUN yarn config set network-timeout 600000 -g && yarn global add @angular/cli @vue/cli create-react-app express-generator && yarn cache clean --all
 
 # Install pip dependencies
-RUN pip3 install --no-cache-dir flask-now==0.2.2 django==4.0
+RUN pip3 install --no-cache-dir flask-now==0.2.2 django==4.0.1
 
 # Install gem packages
-RUN gem install rails:6.1.4.1 && gem cleanup
+RUN gem install rails:7.0.1 && gem cleanup
 
 # Install dotnet
 RUN curl -sSL -o dotnet-install.sh https://dot.net/v1/dotnet-install.sh && chmod +x dotnet-install.sh && bash dotnet-install.sh && rm dotnet-install.sh
