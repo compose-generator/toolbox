@@ -1,5 +1,20 @@
 version: 2
 updates:
+  # Github Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+      time: "04:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 15
+    target-branch: dev
+    reviewers:
+      - marcauberer
+    assignees:
+      - marcauberer
+  
+  # Dockerfile - amd64
   - package-ecosystem: docker
     directory: /amd64
     schedule:
@@ -13,6 +28,7 @@ updates:
     assignees:
       - marcauberer
 
+  # Dockerfile - i386
   - package-ecosystem: docker
     directory: /i386
     schedule:
@@ -26,6 +42,7 @@ updates:
     assignees:
       - marcauberer
 
+  # Dockerfile - armv6
   - package-ecosystem: docker
     directory: /armv6
     schedule:
@@ -39,6 +56,7 @@ updates:
     assignees:
       - marcauberer
 
+  # Dockerfile - armv7
   - package-ecosystem: docker
     directory: /armv7
     schedule:
@@ -52,6 +70,7 @@ updates:
     assignees:
       - marcauberer
 
+  # Dockerfile - arm64
   - package-ecosystem: docker
     directory: /arm64
     schedule:
