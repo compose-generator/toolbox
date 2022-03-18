@@ -4,9 +4,9 @@
 FROM alpine:3.15.0
 
 # Install alpine packages
-RUN apk update && apk add --no-cache sudo=1.9.8_p2-r1 bash=5.1.8-r0 curl=7.80.0-r0 git=2.34.1-r0 npm=8.1.3-r0 yarn=1.22.17-r0 \
+RUN apk update && apk add --no-cache sudo=1.9.8_p2-r1 bash=5.1.16-r0 curl=7.80.0-r0 git=2.34.1-r0 npm=8.1.3-r0 yarn=1.22.17-r0 \
     unzip=6.0-r9 python3=3.9.7-r4 py3-pip=20.3.4-r1 rust=1.56.1-r0 ruby=3.0.3-r0 ruby-dev=3.0.3-r0 ruby-etc=3.0.3-r0 make=4.3-r0 \
-    zlib-dev=1.2.11-r3 icu-libs=69.1-r1 krb5-libs=1.19.2-r4 libgcc=10.3.1_git20211027-r0 libintl=0.21-r0 libssl1.1=1.1.1l-r8 libstdc++=10.3.1_git20211027-r0 \
+    zlib-dev=1.2.11-r3 icu-libs=69.1-r1 krb5-libs=1.19.2-r4 libgcc=10.3.1_git20211027-r0 libintl=0.21-r0 libssl1.1=1.1.1n-r0 libstdc++=10.3.1_git20211027-r0 \
     && rm -rf /var/cache/apk/*
 
 # Install required npm packages
