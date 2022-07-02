@@ -21,7 +21,7 @@ RUN gem install rails:7.0.3 && gem cleanup
 # Install golang
 RUN apk add --no-cache --virtual .build-deps gcc=11.2.1_git20220219-r2 musl-dev=1.2.3-r0 go=1.18.2-r0 openssl=1.1.1p-r0 \
     && rm -rf /var/cache/apk/* \
-    && curl -sSL -o go.tar.gz https://golang.org/dl/go1.18.src.tar.gz \
+    && curl -sSL -o go.tar.gz https://golang.org/dl/go1.18.3.src.tar.gz \
     && tar -C /usr/local -xzf go.tar.gz && rm go.tar.gz
 WORKDIR /usr/local/go/src/
 RUN ./make.bash && apk del .build-deps
