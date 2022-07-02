@@ -19,7 +19,7 @@ RUN pip3 install --no-cache-dir flask-now==0.2.2 django==4.0.5
 RUN gem install rails:7.0.3 && gem cleanup
 
 # Install golang
-RUN apk add --no-cache --virtual .build-deps gcc=11.2.1_git20220219-r2 musl-dev=1.2.3-r0 go=1.18.2-r0 openssl=1.1.1o-r0 \
+RUN apk add --no-cache --virtual .build-deps gcc=11.2.1_git20220219-r2 musl-dev=1.2.3-r0 go=1.18.2-r0 openssl=1.1.1p-r0 \
     && rm -rf /var/cache/apk/* \
     && curl -sSL -o go.tar.gz https://golang.org/dl/go1.18.src.tar.gz \
     && tar -C /usr/local -xzf go.tar.gz && rm go.tar.gz
