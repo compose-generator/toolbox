@@ -38,23 +38,23 @@ jobs:
         uses: battila7/get-version-action@v2
         
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
         
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Docker login GHCR
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
 
       - name: Docker login Docker Hub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: docker.io
           username: chillibits
@@ -76,17 +76,17 @@ jobs:
         uses: battila7/get-version-action@v2
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Docker login GHCR
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
 
       - name: Docker login Docker Hub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: docker.io
           username: chillibits
