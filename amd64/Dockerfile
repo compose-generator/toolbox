@@ -4,24 +4,24 @@
 FROM alpine:3.18.3
 
 # Install alpine packages
-RUN apk update && apk add --no-cache sudo=1.9.10-r0 bash=5.1.16-r2 curl=7.83.1-r3 git=2.36.2-r0 npm=8.10.0-r0 yarn=1.22.19-r0 \
-    unzip=6.0-r9 python3=3.10.5-r0 py3-pip=22.1.1-r0 rust=1.60.0-r2 ruby=3.1.2-r0 ruby-dev=3.1.2-r0 ruby-etc=3.1.2-r0 make=4.3-r0 \
-    zlib-dev=1.2.12-r3 icu-libs=71.1-r2 krb5-libs=1.19.3-r0 libgcc=11.2.1_git20220219-r2 libintl=0.21-r2 libssl1.1=1.1.1q-r0 libstdc++=11.2.1_git20220219-r2 \
+RUN apk update && apk add --no-cache sudo=1.9.13_p3-r2 bash=5.2.15-r5 curl=8.2.1-r0 git=2.40.1-r0 npm=9.6.6-r0 yarn=1.22.19-r0 \
+    unzip=6.0-r14 python3=3.11.4-r0 py3-pip=23.1.2-r0 rust=1.71.1-r0 ruby=3.2.2-r0 ruby-dev=3.2.2-r0 ruby-etc=3.2.2-r0 make=4.4.1-r1 \
+    zlib-dev=1.2.13-r1 icu-libs=73.2-r2 krb5-libs=1.20.1-r1 libgcc=12.2.1_git20220924-r10 libintl=0.21.1-r7 libssl1.1=1.1.1u-r1 libstdc++=12.2.1_git20220924-r10 \
     && rm -rf /var/cache/apk/*
 
 # Install required npm packages
 RUN yarn config set network-timeout 600000 -g && yarn global add @angular/cli @vue/cli create-react-app@5.0.1 express-generator && yarn cache clean --all
 
 # Install pip dependencies
-RUN pip3 install --no-cache-dir flask-now==0.2.2 django==4.1.1
+RUN pip3 install --no-cache-dir flask-now==0.2.2 django==4.2.4
 
 # Install gem packages
-RUN gem install rails:7.0.4 && gem cleanup
+RUN gem install rails:7.0.7.2 && gem cleanup
 
 # Install golang
-RUN apk add --no-cache --virtual .build-deps gcc=11.2.1_git20220219-r2 musl-dev=1.2.3-r0 go=1.18.6-r0 openssl=1.1.1q-r0 \
+RUN apk add --no-cache --virtual .build-deps gcc=12.2.1_git20220924-r10 musl-dev=1.2.4-r1 go=1.20.7-r0 openssl=3.1.2-r0 \
     && rm -rf /var/cache/apk/* \
-    && curl -sSL -o go.tar.gz https://golang.org/dl/go1.19.1.src.tar.gz \
+    && curl -sSL -o go.tar.gz https://golang.org/dl/go1.21.0.src.tar.gz \
     && tar -C /usr/local -xzf go.tar.gz && rm go.tar.gz
 WORKDIR /usr/local/go/src/
 RUN ./make.bash && apk del .build-deps
