@@ -1,7 +1,7 @@
 # Copyright © 2021-2022 Compose Generator Contributors
 # All rights reserved.
 
-FROM alpine:3.20.0
+FROM alpine:3.20.1
 
 # Install alpine packages
 RUN apk update && apk add --no-cache sudo=1.9.13_p3-r2 bash=5.2.15-r5 curl=8.2.1-r0 git=2.40.1-r0 npm=9.6.6-r0 yarn=1.22.19-r0 \
