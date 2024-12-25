@@ -4,24 +4,24 @@
 FROM alpine:3.21.0
 
 # Install alpine packages
-RUN apk update && apk add --no-cache sudo=1.9.13_p3-r2 bash=5.2.15-r5 curl=8.2.1-r0 git=2.40.1-r0 npm=9.6.6-r0 yarn=1.22.19-r0 \
-    unzip=6.0-r14 python3=3.11.4-r0 py3-pip=23.1.2-r0 rust=1.71.1-r0 ruby=3.2.2-r0 ruby-dev=3.2.2-r0 ruby-etc=3.2.2-r0 make=4.4.1-r1 \
-    zlib-dev=1.2.13-r1 icu-libs=73.2-r2 krb5-libs=1.20.1-r1 libgcc=12.2.1_git20220924-r10 libintl=0.21.1-r7 libssl1.1=1.1.1u-r1 libstdc++=12.2.1_git20220924-r10 \
+RUN apk update && apk add --no-cache sudo=1.9.16_p2-r0 bash=5.2.37-r0 curl=8.11.1-r0 git=2.47.1-r0 npm=10.9.1-r0 yarn=1.22.22-r1 \
+    unzip=6.0-r15 python3=3.12.8-r1 py3-pip=24.3.1-r0 rust=1.83.0-r0 ruby=3.3.6-r0 ruby-dev=3.3.6-r0 ruby-etc=3.3.6-r0 make=4.4.1-r2 \
+    zlib-dev=1.3.1-r2 icu-libs=74.2-r0 krb5-libs=1.21.3-r0 libgcc=14.2.0-r4 libintl=0.22.5-r0 libstdc++=14.2.0-r4 \
     && rm -rf /var/cache/apk/*
 
 # Install required npm packages
 RUN yarn config set network-timeout 600000 -g && yarn global add @angular/cli @vue/cli create-react-app@5.0.1 express-generator && yarn cache clean --all
 
 # Install pip dependencies
-RUN pip3 install --no-cache-dir flask-now==0.2.2 django==4.2.4
+RUN pip3 install --no-cache-dir --break-system-packages flask-now==0.2.2 django==5.1.4
 
 # Install gem packages
-RUN gem install rails:7.0.7.2 && gem cleanup
+RUN gem install rails:8.0.1 && gem cleanup
 
 # Install golang
-RUN apk add --no-cache --virtual .build-deps gcc=12.2.1_git20220924-r10 musl-dev=1.2.4-r1 go=1.20.7-r0 openssl=3.1.2-r0 \
+RUN apk add --no-cache --virtual .build-deps gcc=14.2.0-r4 musl-dev=1.2.5-r8 go=1.23.4-r0 openssl=3.3.2-r4 \
     && rm -rf /var/cache/apk/* \
-    && curl -sSL -o go.tar.gz https://golang.org/dl/go1.21.0.src.tar.gz \
+    && curl -sSL -o go.tar.gz https://golang.org/dl/go1.23.0.src.tar.gz \
     && tar -C /usr/local -xzf go.tar.gz && rm go.tar.gz
 WORKDIR /usr/local/go/src/
 RUN ./make.bash && apk del .build-deps
