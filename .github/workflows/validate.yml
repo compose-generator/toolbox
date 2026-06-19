@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Lint Dockerfile (amd64)
         run: docker run --rm -i hadolint/hadolint < ./amd64/Dockerfile
